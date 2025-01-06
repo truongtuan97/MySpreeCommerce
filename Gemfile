@@ -9,8 +9,8 @@ gem "rails", "~> 7.1.4"
 gem "sprockets-rails"
 gem "mini_racer", platforms: %i[ ruby jruby ] # fixes Could not find a JavaScript runtime. See https://github.com/rails/execjs for a list of available runtimes. (ExecJS::RuntimeUnavailable) in Docker env
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 1.4"
+# Use pg as the database for Active Record
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -86,3 +86,10 @@ gem "spree_i18n"
 
 # only needed for MacOS and Ruby 3.0
 gem 'sassc', github: 'sass/sassc-ruby', branch: 'master'
+
+group :development, :production do
+  gem 'capistrano', '~> 3.18'
+  gem 'capistrano-rails', '~> 1.6'
+  gem 'capistrano-rvm', '~> 0.1.2', require: false
+  gem 'capistrano-postgresql', '~> 1.0'
+end
