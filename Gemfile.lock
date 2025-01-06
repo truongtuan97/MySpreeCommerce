@@ -118,6 +118,9 @@ GEM
       execjs (~> 2.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    bcrypt_pbkdf (1.1.1)
+    bcrypt_pbkdf (1.1.1-arm64-darwin)
+    bcrypt_pbkdf (1.1.1-x86_64-darwin)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
@@ -173,6 +176,7 @@ GEM
     doorkeeper (5.7.1)
       railties (>= 5)
     drb (2.2.1)
+    ed25519 (1.3.0)
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
@@ -584,6 +588,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt_pbkdf (>= 1.0, < 2.0)
   bootsnap
   capistrano (~> 3.18)
   capistrano-postgresql (~> 1.0)
@@ -591,6 +596,7 @@ DEPENDENCIES
   capistrano-rvm (~> 0.1.2)
   capybara
   debug
+  ed25519 (>= 1.2, < 2.0)
   image_processing (~> 1.13)
   importmap-rails
   jbuilder

@@ -92,4 +92,6 @@ group :development, :production do
   gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rvm', '~> 0.1.2', require: false
   gem 'capistrano-postgresql', '~> 1.0'
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
