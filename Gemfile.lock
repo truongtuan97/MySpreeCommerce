@@ -319,6 +319,10 @@ GEM
     ostruct (0.6.1)
     paranoia (3.0.0)
       activerecord (>= 6, < 8.1)
+    passenger (6.0.24)
+      rack (>= 1.6.13)
+      rackup (>= 2.0.0)
+      rake (>= 12.3.3)
     pg (1.5.9)
     popper_js (1.16.1)
     psych (5.1.2)
@@ -602,6 +606,7 @@ DEPENDENCIES
   jbuilder
   mini_racer
   mission_control-jobs
+  passenger (~> 6.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.4)

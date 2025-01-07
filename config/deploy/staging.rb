@@ -62,7 +62,7 @@
 
 # config/deploy/production.rb
 
-server '47.128.179.123', user: 'deployer', roles: %w{app db web}, primary: true
-
+server '47.128.179.123', user: 'deployer', roles: %w{app db web}
 set :stage, :staging
 set :rails_env, 'development'
+set :deploy_to, "/home/deployer/apps/my_spree_commerce"

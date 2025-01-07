@@ -4,17 +4,17 @@ lock "~> 3.19.2"
 set :application, "MySpreeCommerce"
 set :repo_url, "git@github.com:truongtuan97/MySpreeCommerce.git"
 
-set :rails_env, 'staging'
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/MySpreeCommerce"
+# set :deploy_to, "/var/www/MySpreeCommerce"
 
 # Các thư mục và tệp cần giữ lại trong mỗi lần deploy
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads')
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/credentials.yml.enc', 'config/master.key')
+
 
 # Xác định branch git sử dụng để deploy (chỉ cần nếu bạn muốn deploy từ một branch cụ thể)
 set :branch, 'main'
@@ -24,6 +24,13 @@ set :bundle_flags, '--deployment --quiet'
 
 # Thiết lập số lượng tối đa các phiên bản deploy giữ lại
 set :keep_releases, 3
+
+set :pty, true
+set :ssh_options, {
+  forward_agent: true,
+  auth_methods: %w[publickey],
+  keys: %w[/Users/tuantuong/.ssh/aws_qlbh.pem]
+}
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh

@@ -59,3 +59,8 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+server '47.128.179.123', user: 'deployer', roles: %w{app db web}
+set :stage, :production
+set :rails_env, 'production'
+set :deploy_to, "/home/deployer/apps/my_spree_commerce"
