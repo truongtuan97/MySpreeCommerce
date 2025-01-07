@@ -13,7 +13,7 @@ set :repo_url, "git@github.com:truongtuan97/MySpreeCommerce.git"
 # Các thư mục và tệp cần giữ lại trong mỗi lần deploy
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads')
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-set :linked_files, fetch(:linked_files, []).push('config/credentials.yml.enc', 'config/master.key')
+set :linked_files, fetch(:linked_files, []).push('credentials.yml.enc', 'master.key', 'puma.rb')
 
 
 # Xác định branch git sử dụng để deploy (chỉ cần nếu bạn muốn deploy từ một branch cụ thể)
