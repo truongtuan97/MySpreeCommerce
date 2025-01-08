@@ -1,4 +1,4 @@
-name: "${PROJECT_NAME}-development"
+# name: "${PROJECT_NAME}-development"
 
 services:
   nginx_proxy:
