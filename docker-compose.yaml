@@ -1,10 +1,10 @@
-# name: $PROJECT_NAME-development
+name: "${PROJECT_NAME}-development"
 
 services:
   nginx_proxy:
     image: nginx
     hostname: nginx_proxy
-    container_name: $PROJECT_NAME-nginx_proxy
+    container_name: "${PROJECT_NAME}-nginx_proxy"
     ports:
       - $HTTP_PORT:80
     volumes:
@@ -15,7 +15,7 @@ services:
 
   ruby_server:
     hostname: ruby_server
-    container_name: $PROJECT_NAME-ruby_server
+    container_name: "${PROJECT_NAME}-ruby_server"
     user: $UID
     build:
       context: $PWD/.docker/docker/ruby
@@ -50,7 +50,7 @@ services:
 
   ruby_database:
     hostname: ruby_database
-    container_name: $PROJECT_NAME-ruby_database
+    container_name: "${PROJECT_NAME}-ruby_database"
     image: mysql:8.0.40
     environment:
       - MYSQL_ROOT_PASSWORD=$SQL_DATABASE_ROOT_PASSWORD
