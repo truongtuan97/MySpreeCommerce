@@ -1,6 +1,6 @@
 FROM ruby:3.3.0
 
-ARG WORKING_DIR=/usr/src/app
+ARG WORKING_DIR=/home/deployer/my_spree_commerce/current
 
 WORKDIR $WORKING_DIR
 
@@ -14,7 +14,7 @@ RUN apt-get update -qq && apt-get install -y \
   libpq-dev \
   curl \
   && gem install bundler -v "$BUNDLER_VERSION" \
-  && bundle config set --local path '/usr/src/app'
+  && bundle config set --local path '/home/deployer/my_spree_commerce/current'
 
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
   && apt-get install -y nodejs
