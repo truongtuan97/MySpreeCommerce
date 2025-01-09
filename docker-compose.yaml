@@ -14,11 +14,15 @@ services:
       - web
   # Dịch vụ web (Rails app)
   web:
-    build: .
+    build:
+      context: $PWD/.docker/docker/ruby
+      dockerfile: Development.Dockerfile
+      args:
+        - WORKING_DIR=$DOCKER_WORKING_DIR
     volumes:
       - ".:/app"  # Mount thư mục hiện tại của bạn vào container
     ports:
-      - "3000:3000"  # Mở cổng 3000 cho ứng dụng Rails      
+      - "3000:3000"  # Mở cổng 3000 cho ứng dụng Rails
     depends_on:
       - ruby_database  # Đảm bảo web service chạy sau db service
     environment:
