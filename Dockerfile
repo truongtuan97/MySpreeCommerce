@@ -23,9 +23,12 @@ ENV RAILS_ENV="development" \
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y libffi-dev
+
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libffi-dev libpq-dev pkg-config && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
