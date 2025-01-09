@@ -25,12 +25,12 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y libffi-dev
-
-RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y libffi-dev
+    
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --without && \
