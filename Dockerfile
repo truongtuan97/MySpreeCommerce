@@ -2,7 +2,10 @@
 FROM ruby:3.3.0
 
 # Cài đặt các phụ thuộc hệ thống cần thiết
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y \
+  build-essential \
+  libvips-dev \
+  libpq-dev
 
 # Cài đặt Yarn (giúp quản lý các gói front-end)
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
