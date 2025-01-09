@@ -15,8 +15,8 @@ services:
   # Dịch vụ web (Rails app)
   web:
     build:
-      context: $PWD/.docker/docker/ruby
-      dockerfile: Development.Dockerfile
+      context: .  # Đây là thư mục gốc của dự án, nơi chứa docker-compose.yml
+      dockerfile: .docker/docker/ruby/Development.Dockerfile
       args:
         - WORKING_DIR=$DOCKER_WORKING_DIR
     volumes:
