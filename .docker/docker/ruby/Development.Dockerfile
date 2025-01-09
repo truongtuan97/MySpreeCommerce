@@ -4,6 +4,10 @@ ARG WORKING_DIR=/home/deployer/my_spree_commerce/current
 
 WORKDIR $WORKING_DIR
 
+COPY Gemfile $WORKING_DIR
+COPY Gemfile.lock $WORKING_DIR
+RUN bundle install
+
 ENV RAILS_ENV="development" \
   BUNDLER_VERSION=2.4.16 \
   NVM_DIR=/root/.nvm
