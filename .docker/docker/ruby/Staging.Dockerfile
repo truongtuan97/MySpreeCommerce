@@ -4,9 +4,9 @@ ARG WORKING_DIR=/home/deployer/my_spree_commerce/current
 
 WORKDIR $WORKING_DIR
 
-COPY Gemfile $WORKING_DIR
-COPY Gemfile.lock $WORKING_DIR
-RUN bundle install
+# COPY Gemfile $WORKING_DIR
+# COPY Gemfile.lock $WORKING_DIR
+# RUN bundle install
 
 ENV RAILS_ENV="test" \
   BUNDLER_VERSION=2.4.16 \
@@ -23,6 +23,6 @@ RUN apt-get update -qq && apt-get install -y \
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
   && apt-get install -y nodejs
 
-# ENTRYPOINT ["./bin/docker-entrypoint"]
+ENTRYPOINT ["./bin/docker-entrypoint"]
 
 CMD ["bash", "-c", "test -f tmp/pids/server.pid && rm tmp/pids/server.pid; bundle install && bin/rails db:migrate && bin/rails assets:clean assets:precompile && bin/rails server -b 0.0.0.0"]
