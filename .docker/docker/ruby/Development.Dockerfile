@@ -1,28 +1,27 @@
+# Bắt đầu từ một image Ruby chính thức
 FROM ruby:3.3.0
 
-ARG WORKING_DIR=/home/deployer/apps/MySpreeCommerce
+# Cài đặt các phụ thuộc hệ thống cần thiết
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
-WORKDIR $WORKING_DIR
+# Cài đặt Yarn (giúp quản lý các gói front-end)
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install -y yarn
 
-# COPY Gemfile $WORKING_DIR
-# COPY Gemfile.lock $WORKING_DIR
-# RUN bundle install
+# Tạo thư mục ứng dụng trong container và thiết lập là thư mục làm việc
+WORKDIR /app
 
-ENV RAILS_ENV="development" \
-  BUNDLER_VERSION=2.4.16 \
-  NVM_DIR=/root/.nvm
+# Sao chép Gemfile và Gemfile.lock vào container
+COPY Gemfile /app/
+COPY Gemfile.lock /app/
 
-RUN apt-get update -qq && apt-get install -y \
-  build-essential \
-  libvips-dev \
-  libpq-dev \
-  curl \
-  && gem install bundler -v "$BUNDLER_VERSION" \
-  && bundle config set --local path '/home/deployer/apps/MySpreeCommerce'
+# Cài đặt các gem từ Gemfile
+RUN bundle install
 
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-  && apt-get install -y nodejs
+# Sao chép toàn bộ mã nguồn của dự án vào container
+COPY . /app/
 
-# ENTRYPOINT ["./bin/docker-entrypoint"]
-
-CMD ["bash", "-c", "test -f tmp/pids/server.pid && rm tmp/pids/server.pid; bundle install && bin/rails db:migrate && bin/rails assets:clean assets:precompile && bin/rails server -b 0.0.0.0"]
+# Khởi động server Rails (có thể thay đổi tùy vào ứng dụng của bạn)
+CMD ["rails", "server", "-b", "0.0.0.0"]

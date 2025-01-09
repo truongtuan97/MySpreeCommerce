@@ -4,8 +4,8 @@ ARG WORKING_DIR=/home/deployer/apps/MySpreeCommerce
 
 WORKDIR $WORKING_DIR
 
-# COPY Gemfile $WORKING_DIR
-# COPY Gemfile.lock $WORKING_DIR
+COPY Gemfile $WORKING_DIR
+COPY Gemfile.lock $WORKING_DIR
 # RUN bundle install
 
 ENV RAILS_ENV="production" \
